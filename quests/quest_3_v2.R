@@ -1,5 +1,5 @@
 # Quest 3
-# Get the average length of three different languages and make histograms
+# Get the average length of three different languages and make histograms.
 
 # Load the libraries
 library(stringi)

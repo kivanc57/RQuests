@@ -1,5 +1,5 @@
 # Quest 3
-# Get the average length of three different languages and make histograms
+# Get the average length of three different languages and make histograms.
 
 # Load the libraries
 library(stringi)
@@ -14,10 +14,12 @@ content_ch <- GetFileContent("../data/CH2.txt")
 content_cz <- GetFileContent("../data/CZ1.txt")
 
 # Get tokens, count_types and count_letters
-# AFR
+
+## AFR #######################################
 tokens        <- TokenizeText(content_afr)
 count_tokens  <- length(tokens)
-count_lengths <- nchar(tokens)
+count_lengths <- 
+  nchar(tokens)
 count_letters <- sum(count_lengths)
 
 # Return average word length and round it
@@ -26,7 +28,7 @@ average_length <- round(count_letters/count_tokens, digits=2)
 plot(table(count_lengths))
 
 
-# CH
+## CH #######################################
 tokens        <- TokenizeText(content_ch)
 count_tokens  <- length(tokens)
 count_lengths <- nchar(tokens)
@@ -38,7 +40,7 @@ average_length <- round(count_letters/count_tokens, digits=2)
 plot(table(count_lengths))
 
 
-# CZ
+## CZ #######################################
 tokens        <- TokenizeText(content_cz)
 count_tokens  <- length(tokens)
 count_lengths <- nchar(tokens)

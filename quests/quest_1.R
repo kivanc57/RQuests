@@ -1,5 +1,5 @@
 # Quest 1
-# Get the average length of a text
+# Get the average length of a text.
 
 # Load the libraries
 library(stringi)

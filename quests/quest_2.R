@@ -1,5 +1,5 @@
 # Quest 2
-# Get the average length of a dictionary based on a text
+# Get the average length of a dictionary based on a text.
 
 # Load the libraries
 library(stringi)
