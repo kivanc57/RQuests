@@ -13,7 +13,6 @@ languages <- 0
 # Get the remote built-int functions
 functions <- source("https://raw.githubusercontent.com/oltkkol/vmod/master/simplest_text.R")
 
-
 # Get data for Afrikaans, Chinese and Czech
 content_afr <- GetFileContent("../data/AFR.txt")
 content_ch <- GetFileContent("../data/CH2.txt")

@@ -11,6 +11,9 @@ functions <- source("https://raw.githubusercontent.com/oltkkol/vmod/master/simpl
 # Get data
 content <- GetFileContent("../data/chapter.txt")
 
+# Create results vector
+results <- c()
+
 # Get tokens, count_tokens and count_letters
 tokens <- TokenizeText(content)
 
