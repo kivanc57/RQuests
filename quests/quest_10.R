@@ -17,7 +17,7 @@ table(results)
 relative_constant <- 123
 
 # Create difference_table vector
-difference_table <- numeric(1000)
+difference_table <- numeric()
 
 # Randomize the results
 for (i in 1:1000){
@@ -28,7 +28,7 @@ for (i in 1:1000){
   results_ý <- length(which(randomized_results == "ý"))
   
   difference <- abs(((results_i + results_í) - (results_y + results_ý)) / (relative_constant))
-  difference_table[i] <- difference
+  difference_table <- append(difference_table, difference)
   hist(difference_table)
 }
 
