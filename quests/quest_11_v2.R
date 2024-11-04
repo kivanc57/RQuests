@@ -39,3 +39,12 @@ dev.off()
 confidence_interval <- qnorm( c(0.025, 0.975), mean(left_population), sd(left_population))
 print(confidence_interval)
 
+####### TEST ########################
+left_cumulated <- cumsum(left_table)
+left_cumulated
+
+barplot(left_table)
+barplot(left_cumulated)
+
+plot(left_table, type="b")			#„polygon četností“
+plot(left_cumulated, type="b")	#„součtová křivka“
