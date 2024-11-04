@@ -26,7 +26,7 @@ left_table <- table(left_population)
 # Get length
 left_length <- length(left_population)
 
-# Get barplot
+# Create and save barplot
 jpeg(filename="../results/left_barplot.jpeg", width=800, height=800)
 barplot(left_table / left_length, 
         main = "Proportion of Left-Handed Individuals in Samples",
