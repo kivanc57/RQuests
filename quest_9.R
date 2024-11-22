@@ -1,53 +1,52 @@
-# Quest 9
-# Get random list functions
-# Create random lists with them
-# Create histogram
-# Create confidential intervals
-
-# Define black_box1 to get a list with random function
-black_box1 <- function(amount){
-  rnorm(amount, 92, 2)
+# Declare black_box1 to get a list with random function
+black_box1 <- function(amount=10){
+  return (rnorm(amount, 92, 2))
 }
 
-# Define black_box2 to get a list with random function
-black_box2 <- function(amount){
-  rgamma(amount, 2, 17)
+# Declare black_box2 to get a list with random function
+black_box2 <- function(amount=10){
+  return (rgamma(amount, 2, 17))
 }
 
-# Create means vector for 1000 elements
-means_1 <- numeric(1000)
-means_2 <- numeric(1000)
-
-#### black_box1 ##########################################################################
-# Use black_box1 to generate mean
-# Append mean to means
-for (i in 1:1000){
-  sample <- black_box1(10)
-  mean <- round(mean(sample), 2)
-  means_1[i] <- mean
+# Declare get_means
+get_means <- function(input_function, limit=1000){
+  means <- c()
+  for (i in 1:limit){
+    values <- input_function()  # Call the function to get random values
+    mean_value <- round(mean(values), digits=2)
+    means <- c(means, mean_value)
+  }
+  return(means)
 }
 
-# Create histogram
-hist(means_1)
-
-# Create and print confidential invtervals 
-ci_1 <- qnorm( c(0.025, 0.975), mean(means_1), sd(means_1) )
-cat("Confidence Interval Lower =", ci_1[1], ", Upper =", ci_1[2], "\n")
-
-
-
-#### black_box2 ##########################################################################
-# Use black_box2 to generate mean
-# Append mean to means
-for (j in 1:1000){
-  sample <- black_box2(10)
-  mean <- round(mean(sample), 2)
-  means_2[j] <- mean
+# Declare get_histogram
+get_histogram <- function(vector){
+  hist(
+    vector,
+    main="Histogram of Means",
+    col="lightblue",
+    border="black",
+    xlab="Mean Values"
+  )
 }
 
-# Create histogram
-hist(means_2)
+# Declare get_confidence_intervals
+get_confidence_intervals <- function(vector, min=0.025, max=0.975) {
+  return (qnorm(c(min, max), mean(vector), sd(vector)))
+}
 
-# Create and print confidential intervals 
-ci_2 <- qnorm( c(0.025, 0.975), mean(means_2), sd(means_2) )
-cat("Confidence Interval Lower =", ci_2[1], ", Upper =", ci_2[2], "\n")
+# black_box1
+means_black_box1 <- get_means(black_box1, 1000)
+get_histogram(means_black_box1)
+confidence_interval1 <- get_confidence_intervals(means_black_box1)
+cat("-----Confidence Intervals for Black Box 1-----\n",
+    "Lowest Value  ==>", confidence_interval1[1], "\n",
+    "Highest Value ==>", confidence_interval1[2], "\n")
+
+# black_box2
+means_black_box2 <- get_means(black_box2, 1000)
+get_histogram(means_black_box2)
+confidence_interval2 <- get_confidence_intervals(means_black_box2)
+cat("-----Confidence Intervals for Black Box 2-----\n",
+    "Lowest Value  ==>", confidence_interval2[1], "\n",
+    "Highest Value ==>", confidence_interval2[2], "\n")

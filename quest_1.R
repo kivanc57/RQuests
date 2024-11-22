@@ -1,5 +1,5 @@
 # Quest 1
-# Get the average length of a text.
+# Get the mean of a text.
 
 # Load the libraries
 library(stringi)
@@ -9,12 +9,19 @@ library(stringr)
 functions <- source("https://raw.githubusercontent.com/oltkkol/vmod/master/simplest_text.R")
 
 # Get data
-content <- GetFileContent("../data/svejk.txt")
+content <- GetFileContent("./data/svejk.txt")
 
-# Get tokens, count_tokens and count_letters
-tokens        <- TokenizeText(content)
-count_tokens  <- length(tokens)
-count_letters <- sum(nchar(tokens))
+# Declare get_mean
+get_mean <- function(text){
+  # Get tokens, count_tokens and count_letters
+  tokens        <- TokenizeText(text)
+  count_tokens  <- length(tokens)
+  count_letters <- sum(nchar(tokens))
 
-# Return average word length and round it
-average_length <- round(count_letters/count_tokens, digits=2)
+  # Return mean and round it
+  mean <- round(count_letters/count_tokens, digits=2)
+  return (mean)
+}
+
+# Print the result
+cat("Average token length:", get_mean(content), "\n")

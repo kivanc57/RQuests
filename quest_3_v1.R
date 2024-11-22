@@ -9,44 +9,32 @@ library(stringr)
 functions <- source("https://raw.githubusercontent.com/oltkkol/vmod/master/simplest_text.R")
 
 # Get data for Afrikaans, Chinese and Czech
-content_afr <- GetFileContent("../data/AFR.txt")
-content_ch <- GetFileContent("../data/CH2.txt")
-content_cz <- GetFileContent("../data/CZ1.txt")
+content_afr <- GetFileContent("./data/AFR.txt")
+content_ch <- GetFileContent("./data/CH2.txt")
+content_cz <- GetFileContent("./data/CZ1.txt")
 
-# Get tokens, count_types and count_letters
+# Declare get_plot
+get_plot <- function(length_vector) {
+  plot(table(length_vector))
+}
 
-## AFR #######################################
-tokens        <- TokenizeText(content_afr)
-count_tokens  <- length(tokens)
-count_lengths <- 
-  nchar(tokens)
-count_letters <- sum(count_lengths)
+# Declare get_average_length_and_plot
+get_average_length_and_plot <- function(text) {
+  # Get tokens, count_types and count_letters
+  tokens        <- TokenizeText(text)
+  count_tokens  <- length(tokens)
+  count_lengths <- nchar(tokens)
+  count_letters <- sum(count_lengths)
 
-# Return average word length and round it
-average_length <- round(count_letters/count_tokens, digits=2)
-# Plot count_length
-plot(table(count_lengths))
+  # Get plot
+  get_plot(count_lengths)
 
+  # Return average word length and round it
+  average_length <- round(count_letters/count_tokens)
+  return (average_length)
+}
 
-## CH #######################################
-tokens        <- TokenizeText(content_ch)
-count_tokens  <- length(tokens)
-count_lengths <- nchar(tokens)
-count_letters <- sum(count_lengths)
-
-# Return average word length and round it
-average_length <- round(count_letters/count_tokens, digits=2)
-# Plot count_length
-plot(table(count_lengths))
-
-
-## CZ #######################################
-tokens        <- TokenizeText(content_cz)
-count_tokens  <- length(tokens)
-count_lengths <- nchar(tokens)
-count_letters <- sum(count_lengths)
-
-# Return average word length and round it
-average_length <- round(count_letters/count_tokens, digits=2)
-# Plot count_length
-plot(table(count_lengths))
+# Print average length for each language
+cat("---AFR---\nRetrieving plot and average_length...\nAverage length:", get_average_length(content_afr), "\n")
+cat("---CH---\nRetrieving plot and average_length...\nAverage length:", get_average_length(content_ch), "\n")
+cat("---CZ---\nRetrieving plot and average_length...\nAverage length:", get_average_length(content_cz), "\n")

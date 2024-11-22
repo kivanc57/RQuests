@@ -1,5 +1,5 @@
 # Quest 6
-# Get the average length of three different languages and make histograms.
+# Get the mean of three different languages and make histograms.
 # Get the tokens randomly for each.
 
 # Load the libraries
@@ -10,31 +10,34 @@ library(stringr)
 functions <- source("https://raw.githubusercontent.com/oltkkol/vmod/master/simplest_text.R")
 
 # Get data for Afrikaans, Chinese and Czech
-content_afr <- GetFileContent("../data/AFR.txt")
-content_ch <- GetFileContent("../data/CH2.txt")
-content_cz <- GetFileContent("../data/CZ1.txt")
+content_afr <- GetFileContent("./data/AFR.txt")
+content_ch <- GetFileContent("./data/CH2.txt")
+content_cz <- GetFileContent("./data/CZ1.txt")
 
 # Get a vector of all
 contents <- c(content_afr, content_ch, content_cz)
 
 # Get tokens up to index of max vector 
-random_max <- c(10, 800, 2000, 230, 1002, 121, 578, 202)
-results <- c()
+max_list <- 1:2000
 
-# Iterate each language
-for (content in contents){
-  # Get tokens, count_tokens and count_letters
-  for (el in random_max){
-    randomized_tokens <- sample(TokenizeText(content), el, replace=TRUE)
-    count_tokens      <- length(randomized_tokens)
-    count_letters     <- sum(nchar(randomized_tokens))
+# Declare the function
+get_means <- function(text, limit_list) {
+  means <- c()
 
-    # Return average word length, round and append
-    average_length <- round(count_letters/count_tokens, digits=2)
-    results <- c(results, average_length)
-    }
-  # Plot the results
-  plot(random_max, results)
-  # Neutralize the vector
-  results <- c()
+  for (limit in limit_list) {
+    # Get tokens, count_types and count_letters
+    tokens        <- sample(TokenizeText(text), limit, replace = T)  # Get tokens up to i in max_list 
+    count_letters <- sum(nchar(tokens))
+    
+    mean <- round(count_letters/limit, digits=2)
+    means <- c(means, mean)
   }
+  return (means)
+}
+
+# Iterate each language and print average length, then plot the result
+for (content in contents){
+  means <- get_means(content, max_list)
+  cat("Retrieving means graph...\n")
+  plot(max_list, means)
+}

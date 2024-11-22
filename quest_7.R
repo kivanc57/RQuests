@@ -1,5 +1,5 @@
 # Quest 7
-# Make an estimation graph of the average word length for an author from one of his books.
+# Make an estimation graph of the average word length for any excerpt.
 
 # Load the libraries
 library(stringi)
@@ -9,30 +9,36 @@ library(stringr)
 functions <- source("https://raw.githubusercontent.com/oltkkol/vmod/master/simplest_text.R")
 
 # Get the content
-content <- GetFileContent("../data/Christie.txt")
+content <- GetFileContent("./data/Christie.txt")
 
-# Create a vector to append means
-means <- c(1000)
-
-# Get a token list of 1000 for 1000 times
-# Append it to means
-for (i in 1:1000){
-  # Get randomized_tokens, length_tokens and count_letters
-  randomized_tokens  <- sample(TokenizeText(content), 1000, replace=TRUE)
-  length_tokens      <- length(randomized_tokens)
-  count_letters      <- sum(nchar(randomized_tokens))
+# Declare get_means
+get_means <- function(text, limit) {
+  means <- c()
   
-  # Return average word length, round and append
-  means[i] <- round(count_letters/length_tokens, digits=2)
+  for (i in 1:limit) {
+    # Get tokens, count_types and count_letters
+    tokens        <- sample(TokenizeText(text), limit, replace = T)
+    count_letters <- sum(nchar(tokens))
+    
+    mean <- round(count_letters/limit, digits=2)
+    means <- c(means, mean) 
+  }
+  return (means)
 }
 
-# Get a histogram
-hist(
-  means,
-  main="Histogram of Average Word Lengths",
-  col="lightblue",
-  border="black",
-  xlab="Average Word Length"
-)
+# Declare get_histogram
+get_histogram <- function(means){
+  hist(
+    means,
+    main="Histogram of Average Word Lengths",
+    col="lightblue",
+    border="black",
+    xlab="Average Word Length"
+  )
+}
 
+# Call get_means
+found_means <- get_means(content, 1000)
 
+# Call get_histogram
+get_histogram(found_means)

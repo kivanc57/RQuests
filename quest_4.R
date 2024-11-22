@@ -1,5 +1,6 @@
-# Quest 4
-# Plot a text's average length manually. 
+# Quest 5
+# Ensure the change in the word length by the length of the text with limitations. 
+# Use for for iteration and automate it 
 
 # Load the libraries
 library(stringi)
@@ -9,59 +10,30 @@ library(stringr)
 functions <- source("https://raw.githubusercontent.com/oltkkol/vmod/master/simplest_text.R")
 
 # Get data
-content <- GetFileContent("../data/chapter.txt")
+content <- GetFileContent("./data/chapter.txt")
 
-# Create results vector
-results <- c()
+# Create range_values
+range_values <- c(10, 100, 1000, 10000)
 
-# Get tokens, count_tokens and count_letters
-tokens <- TokenizeText(content)
+# Create means
+means <- c()
 
-# Get tokens up to index of max vector 
-max <- c(10, 100, 1000, 1000)
+# Declare get_means
+get_means <- function(text, means, limit=1000) {
+  # Get tokens, count_types and count_letters
+  tokens        <- TokenizeText(text)[1:limit]  # Get tokens up to i in max_list 
+  count_letters <- sum(nchar(tokens))
+  
+  mean <- round(count_letters/limit, digits=2)
+  means <- c(means, mean)
+  return (means)
+}
 
-# Result for 10
-tokens_const  <- tokens[0:10]
-count_tokens  <- length(tokens_const)
-count_letters <- sum(nchar(tokens))
+# Get mean of each content
+for (limit in range_values){
+  mean <- get_means(content, means, limit)
+  cat("Mean:", mean, "\n")
+}
+# Plot the results=means
+plot(range_values, means)
 
-# Return average word length, round and append
-average_length <- round(count_letters/count_tokens, digits=2)
-append(results, average_length)
-
-#####################################
-
-# Result for 100
-tokens_const  <- tokens[0:100]
-count_tokens  <- length(tokens_const)
-count_letters <- sum(nchar(tokens))
-
-# Return average word length, round and append
-average_length <- round(count_letters/count_tokens, digits=2)
-append(results, average_length)
-
-#####################################
-
-# Result for 1000
-tokens_const  <- tokens[0:1000]
-count_tokens  <- length(tokens_const)
-count_letters <- sum(nchar(tokens))
-
-# Return average word length, round and append
-average_length <- round(count_letters/count_tokens, digits=2)
-append(results, average_length)
-
-#####################################
-
-# Result for 10000
-tokens_const  <- tokens[0:10000]
-count_tokens  <- length(tokens_const)
-count_letters <- sum(nchar(tokens))
-
-# Return average word length, round and append
-average_length <- round(count_letters/count_tokens, digits=2)
-append(results, average_length)
-
-
-# Plot the results
-plot(max, results)

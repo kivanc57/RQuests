@@ -1,36 +1,48 @@
 # Quest 10
 # Find if "i" or "y" is more frequent in a Czech text
+# Get histogram
+# Get confidence interval
 
 # Get the remote built-int functions
 functions <- source("https://raw.githubusercontent.com/oltkkol/vmod/master/simplest_text.R")
 
 # Get the content
-content <- GetFileContent("../data/test.txt")
+content <- GetFileContent("./data/test.txt")
 
-# Tokenize text with regex
-results <- TokenizeText(content, "[iíyý]", regexIsMask=TRUE)
+# Declare get_difference_table
+get_difference_table <- function(text, coefficient=123, limit=1000) {
+  difference_table <- c()
 
-# Get results
-table(results)
+  # Tokenize text with regex
+  tokens <- TokenizeText(text, "[iíyý]", regexIsMask=TRUE)
 
-# Relative difference constant
-relative_constant <- 123
-
-# Create difference_table vector
-difference_table <- numeric()
-
-# Randomize the results
-for (i in 1:1000){
-  randomized_results <- sample(results, relative_constant, replace=TRUE)
-  results_i <- length(which(randomized_results == "i"))
-  results_í <- length(which(randomized_results == "í"))
-  results_y <- length(which(randomized_results == "y"))
-  results_ý <- length(which(randomized_results == "ý"))
-  
-  difference <- abs(((results_i + results_í) - (results_y + results_ý)) / (relative_constant))
-  difference_table <- append(difference_table, difference)
-  hist(difference_table)
+  for (i in 1:limit){
+    sample <- sample(tokens, coefficient, replace=TRUE)
+    results_i <- length(which(sample == "i"))
+    results_í <- length(which(sample == "í"))
+    results_y <- length(which(sample == "y"))
+    results_ý <- length(which(sample == "ý"))
+    
+    difference <- abs(((results_i + results_í) - (results_y + results_ý)) / (coefficient))
+    difference_table <- c(difference_table, difference)
+  }
+  return(difference_table)
 }
 
-# Get confidence interval
-qnorm( c(0.025, 0.975), mean(difference_table), sd(difference_table))
+# Declare get_histogram
+get_histogram <- function(vector) {
+  hist(vector)
+}
+
+# Declare get_confidence_intervals
+get_confidence_intervals <- function(vector, min=0.025, max=0.975) {
+  return (qnorm(c(min, max), mean(vector), sd(vector)))
+}
+
+# Call all the functions and start analysis
+difference_table <- get_difference_table(content)
+get_histogram(difference_table)
+confidence_interval <- get_confidence_intervals(difference_table)
+cat("-----Confidence Intervals-----\n",
+    "Lowest Value  ==>", confidence_interval[1], "\n",
+    "Highest Value ==>", confidence_interval[2], "\n")
