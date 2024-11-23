@@ -1,3 +1,8 @@
+# Quest 9
+# Prepare two functions with random distribution methods
+# Generate vectors
+# Calculate means, create histograms and get confidence intervals of both
+
 # Declare black_box1 to get a list with random function
 black_box1 <- function(amount=10){
   return (rnorm(amount, 92, 2))
@@ -34,6 +39,8 @@ get_histogram <- function(vector){
 get_confidence_intervals <- function(vector, min=0.025, max=0.975) {
   return (qnorm(c(min, max), mean(vector), sd(vector)))
 }
+
+##############################################################################
 
 # black_box1
 means_black_box1 <- get_means(black_box1, 1000)
