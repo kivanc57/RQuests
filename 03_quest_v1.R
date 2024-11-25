@@ -35,6 +35,6 @@ get_average_length_and_plot <- function(text) {
 }
 
 # Print average length for each language
-cat("---AFR---\nRetrieving plot and average_length...\nAverage length:", get_average_length(content_afr), "\n")
-cat("---CH---\nRetrieving plot and average_length...\nAverage length:", get_average_length(content_ch), "\n")
-cat("---CZ---\nRetrieving plot and average_length...\nAverage length:", get_average_length(content_cz), "\n")
+cat("---AFR---\nRetrieving plot and average_length...\nAverage length:", get_average_length_and_plot(content_afr), "\n")
+cat("---CH---\nRetrieving plot and average_length...\nAverage length:", get_average_length_and_plot(content_ch), "\n")
+cat("---CZ---\nRetrieving plot and average_length...\nAverage length:", get_average_length_and_plot(content_cz), "\n")

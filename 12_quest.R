@@ -43,5 +43,6 @@ plot(id_vector, type="b")
 # Get all the lemmas with „Švejk“
 indexes <- which(annotation_table$lemma == "Švejk")
 # Ensure the most frequent syntactical role
-roles <- annotation_table$dep[indexes] #Check this again!!!!!
+roles <- annotation_table$dep_rel[indexes]
 sort(table(roles), decreasing = T)
+View(roles)
