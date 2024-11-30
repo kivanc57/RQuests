@@ -9,9 +9,9 @@ library(stringr)
 functions <- source("https://raw.githubusercontent.com/oltkkol/vmod/master/simplest_text.R")
 
 # Get data for Afrikaans, Chinese and Czech
-content_afr <- GetFileContent("./data/AFR.txt")
-content_ch <- GetFileContent("./data/CH2.txt")
-content_cz <- GetFileContent("./data/CZ1.txt")
+content_afr <- GetFileContent("../data/AFR.txt")
+content_ch <- GetFileContent("../data/CH2.txt")
+content_cz <- GetFileContent("../data/CZ1.txt")
 
 # Declare get_plot
 get_plot <- function(length_vector) {

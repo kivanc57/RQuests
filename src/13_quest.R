@@ -15,7 +15,7 @@ library(stringr)
 functions <- source("https://raw.githubusercontent.com/oltkkol/vmod/master/simplest_text.R")
 
 # Get content
-content <- GetFileContent("./data/foglar.txt")
+content <- GetFileContent("../data/foglar.txt")
 
 # Download language model, set, annotate and get table
 get_annotation_table <- function(language, text){

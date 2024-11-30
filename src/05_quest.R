@@ -10,7 +10,7 @@ library(stringr)
 functions <- source("https://raw.githubusercontent.com/oltkkol/vmod/master/simplest_text.R")
 
 # Get data
-content <- GetFileContent("./data/chapter.txt")
+content <- GetFileContent("../data/chapter.txt")
 
 # Get tokens up to index of max vector 
 max_list <- c(10, 100, 1000, 1000)

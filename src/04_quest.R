@@ -10,7 +10,7 @@ library(stringr)
 functions <- source("https://raw.githubusercontent.com/oltkkol/vmod/master/simplest_text.R")
 
 # Get data
-content <- GetFileContent("./data/chapter.txt")
+content <- GetFileContent("../data/chapter.txt")
 
 # Create range_values
 range_values <- c(10, 100, 1000, 10000)

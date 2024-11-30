@@ -99,7 +99,7 @@ get_entropy<- function(column){
 }
 
 # main program
-directory <- "./data/multiple_texts"
+directory <- "../data/multiple_texts"
 text_files <- list.files(directory, pattern = "\\.txt$", full.names = TRUE)
 
 # Create results df

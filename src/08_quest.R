@@ -14,8 +14,8 @@ library(stringr)
 functions <- source("https://raw.githubusercontent.com/oltkkol/vmod/master/simplest_text.R")
 
 # Get the content
-content_it <- GetFileContent("./data/IT.txt")
-content_ge <- GetFileContent("./data/GE.txt")
+content_it <- GetFileContent("../data/IT.txt")
+content_ge <- GetFileContent("../data/GE.txt")
 
 # Get a vector of all
 contents <- c(content_ge, content_it)

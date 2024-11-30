@@ -9,7 +9,7 @@ library(stringr)
 functions <- source("https://raw.githubusercontent.com/oltkkol/vmod/master/simplest_text.R")
 
 # Get the content
-content <- GetFileContent("./data/Christie.txt")
+content <- GetFileContent("../data/Christie.txt")
 
 # Declare get_means
 get_means <- function(text, limit) {

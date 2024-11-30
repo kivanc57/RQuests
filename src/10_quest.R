@@ -7,7 +7,7 @@
 functions <- source("https://raw.githubusercontent.com/oltkkol/vmod/master/simplest_text.R")
 
 # Get the content
-content <- GetFileContent("./data/test.txt")
+content <- GetFileContent("../data/test.txt")
 
 # Declare get_difference_table
 get_difference_table <- function(text, coefficient=123, limit=1000) {

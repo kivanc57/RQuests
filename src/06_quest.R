@@ -10,9 +10,9 @@ library(stringr)
 functions <- source("https://raw.githubusercontent.com/oltkkol/vmod/master/simplest_text.R")
 
 # Get data for Afrikaans, Chinese and Czech
-content_afr <- GetFileContent("./data/AFR.txt")
-content_ch <- GetFileContent("./data/CH2.txt")
-content_cz <- GetFileContent("./data/CZ1.txt")
+content_afr <- GetFileContent("../data/AFR.txt")
+content_ch <- GetFileContent("../data/CH2.txt")
+content_cz <- GetFileContent("../data/CZ1.txt")
 
 # Get a vector of all
 contents <- c(content_afr, content_ch, content_cz)

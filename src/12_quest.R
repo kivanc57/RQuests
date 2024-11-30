@@ -13,7 +13,7 @@ library(stringr)
 functions <- source("https://raw.githubusercontent.com/oltkkol/vmod/master/simplest_text.R")
 
 # Get content
-content <- GetFileContent("./data/svejk.txt")
+content <- GetFileContent("../data/svejk.txt")
 
 # Download language model, set, annotate and get table
 download_info    <- udpipe_download_model(language='czech')
