@@ -24,8 +24,8 @@ get_means <- function(text, limit_list) {
     tokens        <- TokenizeText(text)[1:limit]  # Get tokens up to i in limit_list 
     count_letters <- sum(nchar(tokens))
     
-    mean <- round(count_letters/limit, digits=2)
-    means <- c(means, mean)
+    mean <-  count_letters/limit
+    means <- round(c(means, mean), digits=2)
   }
   return (means)
 }

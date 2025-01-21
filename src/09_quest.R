@@ -18,8 +18,8 @@ get_means <- function(input_function, limit=1000){
   means <- c()
   for (i in 1:limit){
     values <- input_function()  # Call the function to get random values
-    mean_value <- round(mean(values), digits=2)
-    means <- c(means, mean_value)
+    mean_value <- mean(values)
+    means <- round(c(means, mean_value), digits=2)
   }
   return(means)
 }

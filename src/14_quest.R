@@ -20,7 +20,7 @@ library(stringr)
 functions <- source("https://raw.githubusercontent.com/oltkkol/vmod/master/simplest_text.R")
 
 # Declare get_mean
-get_mean_or_count <- function(text, return, isType=FALSE){
+get_mean_count <- function(text, output_type, isType=FALSE){
   # Get tokens, count_tokens and count_letters
   words <- TokenizeText(text)
   if (isType == TRUE){
@@ -28,16 +28,16 @@ get_mean_or_count <- function(text, return, isType=FALSE){
   }
 
   count_words <- length(words)
-  if (tolower(return) == 'count'){
+  if (tolower(output_type) == 'count'){
     return(count_words)
     
-  } else if (tolower(return) == 'mean') {
+  } else if (tolower(output_type) == 'mean') {
     count_letters <- sum(nchar(words))
     mean <- round(count_letters / count_words, digits = 3)
     return(mean)
 
   } else {
-    stop("Invalid 'return' value. Use 'count' or 'mean'.")
+    stop("Invalid 'output_type' value. Use 'count' or 'mean'.")
   }
 }
 
@@ -113,10 +113,10 @@ for (i in 1:length(text_files)){
   content <- GetFileContent(file)
 
   # Call oltkol functions
-  oltkol_count_tokens <- get_mean_or_count(text=content, return='count', isType=FALSE)
-  oltkol_count_types  <- get_mean_or_count(text=content, return='count', isType=TRUE)
-  oltkol_mean_tokens  <- get_mean_or_count(text=content, return='mean', isType=FALSE)
-  oltkol_mean_types   <- get_mean_or_count(text=content, return='mean', isType=TRUE)
+  oltkol_count_tokens <- get_mean_count(text=content, output_type='count', isType=FALSE)
+  oltkol_count_types  <- get_mean_count(text=content, output_type='count', isType=TRUE)
+  oltkol_mean_tokens  <- get_mean_count(text=content, output_type='mean', isType=FALSE)
+  oltkol_mean_types   <- get_mean_count(text=content, output_type='mean', isType=TRUE)
   
   # Define annotation_table
   annotation_table <- get_annotation_table('czech', content)

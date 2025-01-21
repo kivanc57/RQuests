@@ -20,8 +20,8 @@ get_means <- function(text, limit) {
     tokens        <- sample(TokenizeText(text), limit, replace = T)
     count_letters <- sum(nchar(tokens))
     
-    mean <- round(count_letters/limit, digits=2)
-    means <- c(means, mean) 
+    mean <-  count_letters/limit
+    means <- round(c(means, mean), digits=2)
   }
   return (means)
 }
